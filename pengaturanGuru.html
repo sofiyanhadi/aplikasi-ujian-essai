@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Pengaturan Ujian AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .step-card {
+            border-left-width: 4px;
+            transition: all 0.3s ease;
+        }
+        .step-card-active {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto max-w-3xl p-4 md:p-8">
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Pusat Persiapan Ujian Guru</h1>
+                <p class="text-gray-500 mt-1">Siapkan ujian untuk kelas Anda dalam 3 langkah mudah.</p>
+            </div>
+
+            <!-- LANGKAH 1: TEMPLATE SOAL -->
+            <div id="step1" class="step-card border-blue-500 bg-blue-50 p-5 rounded-lg mb-6 step-card-active">
+                <h2 class="text-xl font-bold text-blue-800 mb-3">Langkah 1: Siapkan Spreadsheet Soal</h2>
+                <p class="text-sm text-blue-700 mb-4">Klik tombol di bawah untuk membuat salinan template Google Sheet untuk soal ujian di Google Drive Anda. Anda bisa langsung mengisi soal di file salinan tersebut.</p>
+                <a href="https://docs.google.com/spreadsheets/d/1XvwgOUD0DM1kMWKHbOfqkuckY7vIW5_E94sENKprnb0/copy" target="_blank" class="inline-block w-full md:w-auto text-center bg-blue-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-700 transition-all shadow-md mb-4">
+                    Buat Salinan Template Soal
+                </a>
+                <p class="text-xs text-blue-700 mb-2"><strong>Penting:</strong> Setelah disalin, jangan lupa atur setelan berbagi menjadi <strong>"Siapa saja yang memiliki link"</strong>.</p>
+                <div>
+                    <label for="sheet-url" class="block text-sm font-medium text-gray-700">Tempelkan URL Spreadsheet Soal Anda di sini:</label>
+                    <input type="url" id="sheet-url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="https://docs.google.com/spreadsheets/d/...">
+                </div>
+            </div>
+
+            <!-- LANGKAH 2: TEMPLATE HASIL -->
+            <div id="step2" class="step-card border-indigo-500 bg-indigo-50 p-5 rounded-lg mb-6">
+                 <h2 class="text-xl font-bold text-indigo-800 mb-3">Langkah 2: Siapkan Spreadsheet Hasil & Skrip</h2>
+                <p class="text-sm text-indigo-700 mb-4">Sekarang, buat salinan template untuk menampung hasil ujian siswa. Template ini sudah berisi skrip otomatis di dalamnya.</p>
+                 <a href="https://docs.google.com/spreadsheets/d/1XvwgOUD0DM1kMWKHbOfqkuckY7vIW5_E94sENKprnb0/copy" target="_blank" class="inline-block w-full md:w-auto text-center bg-indigo-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-indigo-700 transition-all shadow-md mb-4">
+                    Buat Salinan Template Hasil
+                </a>
+                 <p class="text-sm text-indigo-700 font-semibold mb-2">Setelah disalin, ikuti petunjuk ini untuk mengaktifkan skrip:</p>
+                 <ol class="list-decimal list-inside text-xs text-indigo-700 space-y-2 mb-4">
+                    <li>Buka file salinan, lalu klik menu <strong>Ekstensi &rarr; Apps Script</strong>.</li>
+                    <li>Di halaman editor skrip, klik tombol biru <strong>Deploy &rarr; Deployment baru</strong>.</li>
+                    <li>Klik ikon gerigi (&#9881;&#65039;) di sebelah kiri "Pilih jenis", lalu pilih <strong>Aplikasi Web</strong>.</li>
+                    <li>Pada "Siapa yang memiliki akses", ubah menjadi <strong>Siapa saja</strong>.</li>
+                    <li>Klik <strong>Deploy</strong>, lalu klik <strong>Izinkan akses</strong> dan ikuti proses otorisasi dengan akun Google Anda.</li>
+                    <li>Setelah selesai, <strong>salin URL Aplikasi Web</strong> yang ditampilkan.</li>
+                </ol>
+                <div>
+                    <label for="apps-script-url" class="block text-sm font-medium text-gray-700">Tempelkan URL Aplikasi Web Anda di sini:</label>
+                    <input type="url" id="apps-script-url" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500" placeholder="https://script.google.com/macros/s/...">
+                </div>
+            </div>
+
+            <!-- LANGKAH 3: BUAT LINK -->
+            <div id="step3" class="step-card border-green-500 bg-green-50 p-5 rounded-lg">
+                <h2 class="text-xl font-bold text-green-800 mb-3">Langkah 3: Buat & Bagikan Link Ujian</h2>
+                <p class="text-sm text-green-700 mb-4">Setelah kedua URL di atas terisi, klik tombol di bawah ini untuk mendapatkan link ujian final yang siap dibagikan kepada siswa Anda.</p>
+                <div>
+                    <button id="generate-btn" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-700 transition-all duration-300 shadow-md">
+                        Buat Link Ujian Saya
+                    </button>
+                </div>
+                <p id="error-message" class="text-red-500 text-center text-sm mt-2"></p>
+            </div>
+
+            <!-- HASIL LINK -->
+            <div id="result-section" class="hidden mt-6">
+                <div class="bg-gray-800 text-white p-4 rounded-lg">
+                    <label class="block text-sm font-bold">Link Ujian Anda Sudah Siap!</label>
+                    <p class="text-xs text-gray-300 mb-2">Simpan dan bagikan link ini kepada siswa Anda.</p>
+                    <div class="relative">
+                        <input type="text" id="generated-link" class="w-full bg-gray-200 text-gray-800 border border-gray-300 rounded-md p-2 pr-10 text-sm" readonly>
+                        <button id="copy-btn" class="absolute inset-y-0 right-0 px-3 flex items-center bg-gray-300 hover:bg-gray-400 rounded-r-md" title="Salin ke Clipboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                        </button>
+                    </div>
+                    <p id="copy-feedback" class="text-gray-300 text-xs mt-1 text-center"></p>
+                </div>
+                 <div class="mt-4 text-center">
+                    <a id="test-link" href="#" target="_blank" class="text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-5 py-2.5">
+                        Buka & Tes Link Ujian
+                    </a>
+                </div>
+            </div>
+             <footer class="text-center text-xs text-gray-400 mt-8 pt-4 border-t border-gray-200">
+                <p>Aplikasi Ujian Esai AI oleh Sofiyan Hadi</p>
+            </footer>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sheetUrlInput = document.getElementById('sheet-url');
+        const appsScriptUrlInput = document.getElementById('apps-script-url');
+        const generateBtn = document.getElementById('generate-btn');
+        const errorMessage = document.getElementById('error-message');
+        const resultSection = document.getElementById('result-section');
+        const generatedLinkInput = document.getElementById('generated-link');
+        const copyBtn = document.getElementById('copy-btn');
+        const copyFeedback = document.getElementById('copy-feedback');
+        const testLink = document.getElementById('test-link');
+
+        const parseSheetUrl = (url) => {
+            try {
+                // PERBAIKAN: Ekspresi reguler yang salah telah diperbaiki
+                const match = url.match(/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+                return match ? match[1] : null;
+            } catch {
+                return null;
+            }
+        };
+
+        const parseScriptUrl = (url) => {
+            try {
+                return encodeURIComponent(url);
+            } catch {
+                return null;
+            }
+        };
+
+        generateBtn.addEventListener('click', () => {
+            errorMessage.textContent = '';
+            resultSection.classList.add('hidden');
+            
+            const sheetUrl = sheetUrlInput.value.trim();
+            const appsScriptUrl = appsScriptUrlInput.value.trim();
+
+            if (!sheetUrl || !appsScriptUrl) {
+                errorMessage.textContent = 'Harap isi kedua URL dari langkah 1 dan 2.';
+                return;
+            }
+
+            const sheetId = parseSheetUrl(sheetUrl);
+            const encodedScriptUrl = parseScriptUrl(appsScriptUrl);
+
+            if (!sheetId) {
+                errorMessage.textContent = 'Format URL Google Sheet tidak valid.';
+                return;
+            }
+            if (!encodedScriptUrl || !appsScriptUrl.includes('macros/s')) {
+                errorMessage.textContent = 'Format URL Google Apps Script sepertinya tidak valid.';
+                return;
+            }
+            
+            const baseUrl = 'https://spontan-go.web.id/Soal_Essay/KoreksiAI.html';
+            const finalUrl = `${baseUrl}?sheetId=${sheetId}&scriptUrl=${encodedScriptUrl}`;
+            
+            generatedLinkInput.value = finalUrl;
+            testLink.href = finalUrl;
+            resultSection.classList.remove('hidden');
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+
+        copyBtn.addEventListener('click', () => {
+            generatedLinkInput.select();
+            document.execCommand('copy');
+            copyFeedback.textContent = 'Berhasil disalin!';
+            setTimeout(() => {
+                copyFeedback.textContent = '';
+            }, 2000);
+        });
+    });
+</script>
+</body>
+</html>
