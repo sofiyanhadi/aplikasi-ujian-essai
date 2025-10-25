@@ -49,8 +49,8 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-    <div class="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden">
+<body class="bg-stone-100 flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-4xl bg-stone-50 rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden">
         
         <button id="teacher-settings-btn" class="absolute top-4 right-4 text-gray-500 hover:text-blue-600 transition-colors" title="Pengaturan Guru">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -87,11 +87,11 @@
                 <div id="timer-display" class="text-xl font-bold text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-lg"></div>
                 <div id="student-info" class="text-right text-sm text-gray-600"></div>
             </div>
-            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 min-h-[120px]">
+            <div class="bg-stone-100 p-6 rounded-lg border border-gray-200 min-h-[120px]">
                 <p id="question-text" class="text-lg text-gray-800 leading-relaxed"></p>
             </div>
             <div class="mt-4">
-                <div id="writing-toolbar" class="flex flex-wrap gap-2 mb-2 p-2 bg-gray-100 rounded-lg border">
+                <div id="writing-toolbar" class="flex flex-wrap gap-2 mb-2 p-2 bg-stone-100 rounded-lg border">
                     <button type="button" class="toolbar-btn" data-char="²">x²</button>
                     <button type="button" class="toolbar-btn" data-char="³">x³</button>
                     <button type="button" class="toolbar-btn" data-char="√">√</button>
@@ -151,7 +151,7 @@
     </div>
 
     <div id="settings-backdrop" class="modal-backdrop"></div>
-    <div id="settings-modal" class="modal w-11/12 max-w-lg bg-white rounded-xl shadow-2xl p-6">
+    <div id="settings-modal" class="modal w-11/12 max-w-lg bg-stone-50 rounded-xl shadow-2xl p-6">
         <div id="pin-section">
             <h3 class="text-xl font-bold text-center mb-4">Mode Guru</h3>
             <p class="text-center text-gray-600 mb-4">Masukkan PIN untuk mengakses pengaturan.</p>
@@ -198,7 +198,7 @@
             
              <div id="generated-link-container" class="hidden mt-4">
                 <label class="block text-sm font-medium text-gray-700">Link Ujian (Bagikan ke Siswa):</label>
-                <textarea id="generated-link-output" class="w-full h-24 p-2 border rounded-md mt-1 bg-gray-50" readonly></textarea>
+                <textarea id="generated-link-output" class="w-full h-24 p-2 border rounded-md mt-1 bg-stone-100" readonly></textarea>
                 <button id="copy-link-btn" class="mt-2 w-full bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Salin Link</button>
             </div>
 
@@ -210,7 +210,7 @@
     </div>
     
     <div id="cheat-backdrop" class="modal-backdrop"></div>
-    <div id="cheat-modal" class="modal w-11/12 max-w-md bg-white rounded-xl shadow-2xl p-6 text-center">
+    <div id="cheat-modal" class="modal w-11/12 max-w-md bg-stone-50 rounded-xl shadow-2xl p-6 text-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-16 w-16 text-red-500" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.21 3.03-1.742 3.03H4.42c-1.532 0-2.492-1.696-1.742-3.03l5.58-9.92zM10 13a1 1 0 110-2 1 1 0 010 2zm-1-4a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
         </svg>
@@ -724,7 +724,7 @@
             resultsDetails.innerHTML = '';
             studentAnswers.forEach((ans, index) => {
                 const scoreColor = ans.score >= 75 ? 'bg-green-100 border-green-500' : ans.score >= 50 ? 'bg-yellow-100 border-yellow-500' : 'bg-red-100 border-red-500';
-                resultsDetails.innerHTML += `<div class="p-4 rounded-lg border-l-4 prose-custom ${scoreColor}"><h3 class="font-semibold text-gray-800">Soal ${index + 1}</h3><p class="text-gray-700">${ans.question}</p><p class="mt-2 p-2 bg-gray-50 rounded text-gray-600"><strong>Jawaban Anda:</strong> ${ans.answer}</p><div class="mt-2 pt-2 border-t"><p class="font-bold">Skor: <span class="text-blue-700">${ans.score}</span> | Umpan Balik AI:</p><p class="text-sm italic text-gray-800">${ans.feedback}</p></div></div>`;
+                resultsDetails.innerHTML += `<div class="p-4 rounded-lg border-l-4 prose-custom ${scoreColor}"><h3 class="font-semibold text-gray-800">Soal ${index + 1}</h3><p class="text-gray-700">${ans.question}</p><p class="mt-2 p-2 bg-stone-100 rounded text-gray-600"><strong>Jawaban Anda:</strong> ${ans.answer}</p><div class="mt-2 pt-2 border-t"><p class="font-bold">Skor: <span class="text-blue-700">${ans.score}</span> | Umpan Balik AI:</p><p class="text-sm italic text-gray-800">${ans.feedback}</p></div></div>`;
             });
             saveResultsToSheet(averageScore);
         };
